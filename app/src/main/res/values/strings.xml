@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">OnlineStoreApp</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="main_fragment">Main Fragment</string>
+    <string name="logo">logo</string>
+    <string name="login_fragment">login fragment</string>
+
+    <!--    authorization texts-->
+    <string name="email">email</string>
+    <string name="password">password</string>
+
+    <string name="lets_login">Already have an account?</string>
+    <string name="lets_reg">first time here?</string>
+    <string name="login">Sign In</string>
+    <string name="registration">Sign Up</string>
+    <string name="logout">log out</string>
+    <string name="welcome_back">Welcome back</string>
+    <string name="registration_text">Registration</string>
+    <string name="first_name">First name</string>
+    <string name="sign_in_apple">Sign in with Apple</string>
+    <string name="sign_in_google">Sign in with Google</string>
+
+    <!--    req for password and email edit text-->
+    <string name="need_more_8">error: at least 8 symbols </string>
+    <string name="email_is_not_valid">Email is not valid</string>
+
+    <!--    for user experience texts-->
+    <string name="unValid">Your password is not correct</string>
+    <string name="successfully_created">Congratulations, your account has been created successfully!</string>
+    <string name="email_already_used">This email address is already in use. Please try another email or log in with your existing account</string>
+    <string name="user_does_not_exist">User with this credential does not exist</string>
+    <string name="email_can_not_blank">The email can not be blank</string>
+</resources>
