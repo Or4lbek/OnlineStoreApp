@@ -3,13 +3,15 @@ package com.example.onlinestoreapp.data.mapper
 import com.example.onlinestoreapp.data.model.UserAuthDBModel
 import com.example.onlinestoreapp.domain.model.UserAuth
 
-class OnlineStoreMapper {
+class AuthorizationMapper {
 
     fun mapEntityToDBModel(userAuth: UserAuth): UserAuthDBModel = UserAuthDBModel(
         id = userAuth.id,
         name = userAuth.name,
         email = userAuth.email,
-        password = userAuth.password
+        password = userAuth.password,
+        image = userAuth.image
+
     )
 
     fun mapDBModelToEntity(userAuthDBModel: UserAuthDBModel?): UserAuth? {
@@ -19,7 +21,8 @@ class OnlineStoreMapper {
             id = userAuthDBModel.id,
             name = userAuthDBModel.name,
             email = userAuthDBModel.email,
-            password = userAuthDBModel.password
+            password = userAuthDBModel.password,
+            image = userAuthDBModel.image
         )
     }
 }

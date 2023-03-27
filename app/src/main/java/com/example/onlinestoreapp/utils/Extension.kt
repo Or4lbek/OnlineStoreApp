@@ -10,7 +10,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import com.example.onlinestoreapp.R
+import com.example.onlinestoreapp.domain.network.Response
 import com.google.android.material.textfield.TextInputLayout
+import retrofit2.HttpException
 
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
@@ -43,4 +45,19 @@ inline fun <reified T : Parcelable> Intent.parcelable(key: String): T? = when {
 inline fun <reified T : Parcelable> Bundle.parcelable(key: String): T? = when {
     SDK_INT >= 33 -> getParcelable(key, T::class.java)
     else -> @Suppress("DEPRECATION") getParcelable(key) as? T
+}
+
+fun <T> Throwable.catchError(): Response<T> {
+    this.printStackTrace()
+    return when (this) {
+        is HttpException -> {
+            Response.Error("HttpException")
+        }
+        is IllegalStateException -> {
+            Response.Error("Something went wrong")
+        }
+        else -> {
+            Response.NetworkError
+        }
+    }
 }

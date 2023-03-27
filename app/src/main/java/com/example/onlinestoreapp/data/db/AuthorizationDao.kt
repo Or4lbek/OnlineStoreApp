@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.example.onlinestoreapp.data.model.UserAuthDBModel
 
 @Dao
-interface OnlineStoreDao {
+interface AuthorizationDao {
     @Query("SELECT EXISTS(SELECT 1 FROM users WHERE email = :email)")// EXIST
     suspend fun checkUserByEmail(email: String): Boolean
 
@@ -17,4 +17,6 @@ interface OnlineStoreDao {
     @Query("SELECT * FROM users WHERE email = :email AND password = :password")
     suspend fun loginUser(email: String, password: String): UserAuthDBModel?
 
+    @Query("SELECT * FROM users WHERE id = :id")
+    suspend fun getUserById(id: Int): UserAuthDBModel
 }

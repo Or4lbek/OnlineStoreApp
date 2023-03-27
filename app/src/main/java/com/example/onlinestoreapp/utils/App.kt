@@ -1,14 +1,11 @@
 package com.example.onlinestoreapp.utils
 
 import android.app.Application
-import com.example.onlinestoreapp.di.persistenceModule
-import com.example.onlinestoreapp.di.repoModule
-import com.example.onlinestoreapp.di.useCaseModule
-import com.example.onlinestoreapp.di.viewModelModule
+import com.example.onlinestoreapp.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
-class App: Application() {
+class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -18,6 +15,7 @@ class App: Application() {
             modules(repoModule)
             modules(viewModelModule)
             modules(useCaseModule)
+            modules(apiModule)
         }
     }
 }

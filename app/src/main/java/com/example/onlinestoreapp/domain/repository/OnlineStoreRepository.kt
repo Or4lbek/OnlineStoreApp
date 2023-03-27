@@ -1,13 +1,12 @@
 package com.example.onlinestoreapp.domain.repository
 
-import com.example.onlinestoreapp.domain.model.UserAuth
+import com.example.onlinestoreapp.domain.network.Response
+import com.example.onlinestoreapp.presentation.main.feed.flash_sale.FlashSaleProducts
+import com.example.onlinestoreapp.presentation.main.feed.latest.LatestProducts
 
 interface OnlineStoreRepository {
 
-    suspend fun checkUser(email: String): Boolean
-
-    suspend fun createUser(userAuth: UserAuth)
-
-    suspend fun loginUser(email: String, password: String): UserAuth?
+    suspend fun getLatestProducts(): Response<LatestProducts>
+    suspend fun getFlashSaleProducts(): Response<FlashSaleProducts>
 
 }

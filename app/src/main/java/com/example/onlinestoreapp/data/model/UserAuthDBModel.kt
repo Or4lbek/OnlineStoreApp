@@ -10,7 +10,8 @@ data class UserAuthDBModel(
     val id: Int,
     val name: String,
     val email: String,
-    val password: String
+    val password: String,
+    var image: String
 ) {
     override fun toString(): String {
         return "UserAuthDBModel(id=$id, name='$name', email='$email', password='$password')"

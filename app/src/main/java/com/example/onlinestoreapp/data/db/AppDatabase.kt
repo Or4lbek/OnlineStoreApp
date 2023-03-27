@@ -7,5 +7,5 @@ import com.example.onlinestoreapp.data.model.UserAuthDBModel
 @Database(entities = [UserAuthDBModel::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun onlineStoreDao(): OnlineStoreDao
+    abstract fun onlineStoreDao(): AuthorizationDao
 }

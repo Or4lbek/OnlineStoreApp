@@ -3,12 +3,10 @@ package com.example.onlinestoreapp.presentation.authorization.login
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.example.onlinestoreapp.R
 import com.example.onlinestoreapp.databinding.FragmentLoginBinding
 import com.example.onlinestoreapp.domain.presentation.AdvancedViewState
-import com.example.onlinestoreapp.utils.Constants.USER
 import com.example.onlinestoreapp.utils.base_classes.BaseBindingFragment
 import com.example.onlinestoreapp.utils.checkIsEmailValid
 import com.example.onlinestoreapp.utils.checkPasswordLength
@@ -23,6 +21,7 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>(FragmentLoginBin
             ContextCompat.getColor(requireContext(), R.color.white)
 
         initObservers()
+
         binding.emailTil.checkIsEmailValid(requireContext())
         binding.passwordTil.checkPasswordLength(requireContext())
         binding.signInBtn.setOnClickListener { onClickSignIn() }
@@ -59,10 +58,8 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>(FragmentLoginBin
     private fun handleLoginViewState(data: LoginViewState) {
         when (data) {
             is LoginViewState.OnUserFetched -> {
-                val user = data.user
                 findNavController().navigate(
-                    R.id.action_loginFragment_to_mainFragment,
-                    bundleOf(USER to user)
+                    R.id.action_loginFragment_to_mainFragment
                 )
             }
             LoginViewState.ShowUserDoNotExist -> {

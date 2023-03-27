@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.onlinestoreapp.domain.model.UserAuth
 import com.example.onlinestoreapp.domain.presentation.AdvancedViewState
-import com.example.onlinestoreapp.domain.repository.OnlineStoreRepository
+import com.example.onlinestoreapp.domain.repository.AuthorizationRepository
 import com.example.onlinestoreapp.domain.use_case.ValidateEmailUseCase
 import com.example.onlinestoreapp.domain.use_case.ValidateNameUseCase
 import com.example.onlinestoreapp.domain.use_case.ValidatePasswordUseCase
@@ -14,7 +14,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class RegistrationViewModel(
-    private val repository: OnlineStoreRepository,
+    private val repository: AuthorizationRepository,
     private val validateEmailUseCase: ValidateEmailUseCase,
     private val validatePasswordUseCase: ValidatePasswordUseCase,
     private val validateNameUseCase: ValidateNameUseCase
