@@ -30,4 +30,23 @@
     <string name="email_already_used">This email address is already in use. Please try another email or log in with your existing account</string>
     <string name="user_does_not_exist">User with this credential does not exist</string>
     <string name="email_can_not_blank">The email can not be blank</string>
+    <string name="title_feed">Home</string>
+    <string name="title_like">"Favourites "</string>
+    <string name="title_profile">Profile</string>
+    <string name="profile">Profile</string>
+    <string name="image_of_user">image of user</string>
+    <string name="user_name_temp">User Name</string>
+    <string name="upload_item">Upload item</string>
+    <string name="log_out">Log out</string>
+    <string name="trade_store">Trade store</string>
+    <string name="payment_method">Payment method</string>
+    <string name="balance">Balance</string>
+    <string name="trade_history">Trade history</string>
+    <string name="burger_icon">burger icon</string>
+    <string name="trade_by_bata">Trade by Bata</string>
+    <string name="what_are_you_looking_for">What are you looking for?</string>
+
+    <!--    for Profile fragment-->
+    <string name="successfully_updated">User Image successfully updated!</string>
+    <string name="was_not_updated">User Image was not updated!</string>
 </resources>

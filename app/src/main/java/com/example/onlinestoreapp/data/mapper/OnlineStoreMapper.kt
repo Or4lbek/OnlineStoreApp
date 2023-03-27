@@ -9,7 +9,9 @@ class OnlineStoreMapper {
         id = userAuth.id,
         name = userAuth.name,
         email = userAuth.email,
-        password = userAuth.password
+        password = userAuth.password,
+        image = userAuth.image
+
     )
 
     fun mapDBModelToEntity(userAuthDBModel: UserAuthDBModel?): UserAuth? {
@@ -19,7 +21,8 @@ class OnlineStoreMapper {
             id = userAuthDBModel.id,
             name = userAuthDBModel.name,
             email = userAuthDBModel.email,
-            password = userAuthDBModel.password
+            password = userAuthDBModel.password,
+            image = userAuthDBModel.image
         )
     }
 }

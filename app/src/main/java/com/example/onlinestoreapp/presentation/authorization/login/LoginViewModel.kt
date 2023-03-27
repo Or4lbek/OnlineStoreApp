@@ -4,8 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.onlinestoreapp.domain.repository.OnlineStoreRepository
 import com.example.onlinestoreapp.domain.presentation.AdvancedViewState
+import com.example.onlinestoreapp.domain.repository.OnlineStoreRepository
+import com.example.onlinestoreapp.domain.use_case.CreateAuthTokenUseCase
 import com.example.onlinestoreapp.domain.use_case.ValidateEmailUseCase
 import com.example.onlinestoreapp.domain.use_case.ValidatePasswordUseCase
 import kotlinx.coroutines.delay
@@ -15,7 +16,8 @@ import kotlinx.coroutines.launch
 class LoginViewModel(
     private val repository: OnlineStoreRepository,
     private val validateEmailUseCase: ValidateEmailUseCase,
-    private val validatePasswordUseCase: ValidatePasswordUseCase
+    private val validatePasswordUseCase: ValidatePasswordUseCase,
+    private val createAuthTokenUseCase: CreateAuthTokenUseCase
 ) : ViewModel() {
 
     private val _viewState = MutableLiveData<AdvancedViewState<LoginViewState>>()
@@ -31,7 +33,7 @@ class LoginViewModel(
 
     private fun validateFields(email: String, password: String) {
         val emailResult = validateEmailUseCase(email)
-        val passwordResult = validatePasswordUseCase  (password)
+        val passwordResult = validatePasswordUseCase(password)
 
         val results = listOf(emailResult, passwordResult)
         val errorResult = results.firstOrNull { it.errorMessage != null }
@@ -48,16 +50,21 @@ class LoginViewModel(
         viewModelScope.launch {
             _viewState.value = AdvancedViewState.Loading
             delay(2000)
-            val user = repository.loginUser(
+            val userId = repository.loginUser(
                 email,
                 password
             )
             _viewState.value = AdvancedViewState.Data(
-                if (user == null) LoginViewState.ShowUserDoNotExist
-                else LoginViewState.OnUserFetched(
-                    user
-                )
+                if (userId != null) {
+                    createAuthToken(userId)
+                    LoginViewState.OnUserFetched
+                } else
+                    LoginViewState.ShowUserDoNotExist
             )
         }
+    }
+
+    private fun createAuthToken(userId: Int) {
+        createAuthTokenUseCase(userId)
     }
 }

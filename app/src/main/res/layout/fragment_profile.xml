@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.main.profile.ProfileFragment">
+
+    <TextView
+        android:id="@+id/profile_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="@string/profile"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/user_image_cv"
+        android:layout_width="155dp"
+        android:layout_height="155dp"
+        android:layout_marginTop="20dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="250dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_tv"
+        app:layout_constraintVertical_bias="0.7">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="250dp">
+
+            <ImageView
+                android:id="@+id/user_image_iv"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:contentDescription="@string/image_of_user"
+                android:scaleType="centerCrop" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/user_name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="@string/user_name_temp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_image_cv" />
+
+    <TextView
+        android:id="@+id/upload_item_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_corner"
+        android:drawableStart="@drawable/ic_share"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="10dp"
+        android:text="@string/upload_item"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_name_tv" />
+
+    <TextView
+        android:id="@+id/log_out_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:drawableStart="@drawable/ic_log_out"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="5dp"
+        android:text="@string/log_out"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/help_tv"
+        app:layout_constraintStart_toStartOf="@+id/help_tv"
+        app:layout_constraintTop_toBottomOf="@+id/help_tv" />
+
+    <TextView
+        android:id="@+id/trade_store_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:drawableStart="@drawable/ic_credit_card"
+        android:drawableEnd="@drawable/ic_arrow"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="5dp"
+        android:text="@string/trade_store"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/upload_item_tv"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/upload_item_tv"
+        app:layout_constraintTop_toBottomOf="@+id/upload_item_tv" />
+
+    <TextView
+        android:id="@+id/payment_method_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:drawableStart="@drawable/ic_credit_card"
+        android:drawableEnd="@drawable/ic_arrow"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="5dp"
+        android:text="@string/payment_method"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/trade_store_tv"
+        app:layout_constraintStart_toStartOf="@+id/trade_store_tv"
+        app:layout_constraintTop_toBottomOf="@+id/trade_store_tv" />
+
+    <TextView
+        android:id="@+id/balance_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:drawableStart="@drawable/ic_credit_card"
+        android:drawableEnd="@drawable/ic_money"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="5dp"
+        android:text="@string/balance"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/payment_method_tv"
+        app:layout_constraintStart_toStartOf="@+id/payment_method_tv"
+        app:layout_constraintTop_toBottomOf="@+id/payment_method_tv" />
+
+    <TextView
+        android:id="@+id/trade_history"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:drawableStart="@drawable/ic_credit_card"
+        android:drawableEnd="@drawable/ic_arrow"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="5dp"
+        android:text="@string/trade_history"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/balance_tv"
+        app:layout_constraintStart_toStartOf="@+id/balance_tv"
+        app:layout_constraintTop_toBottomOf="@+id/balance_tv" />
+
+    <TextView
+        android:id="@+id/restore_purchase_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:drawableStart="@drawable/ic_restore"
+        android:drawableEnd="@drawable/ic_arrow"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="5dp"
+        android:text="Restore Purchase"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/trade_history"
+        app:layout_constraintStart_toStartOf="@+id/trade_history"
+        app:layout_constraintTop_toBottomOf="@+id/trade_history" />
+
+    <TextView
+        android:id="@+id/help_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:drawableStart="@drawable/ic_help"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="5dp"
+        android:text="Help"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/restore_purchase_tv"
+        app:layout_constraintStart_toStartOf="@+id/restore_purchase_tv"
+        app:layout_constraintTop_toBottomOf="@+id/restore_purchase_tv" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

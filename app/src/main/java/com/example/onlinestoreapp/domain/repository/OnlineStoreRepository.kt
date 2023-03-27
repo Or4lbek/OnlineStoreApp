@@ -8,6 +8,7 @@ interface OnlineStoreRepository {
 
     suspend fun createUser(userAuth: UserAuth)
 
-    suspend fun loginUser(email: String, password: String): UserAuth?
+    suspend fun loginUser(email: String, password: String): Int?
 
+    suspend fun getUserByTokenId(id: Int): UserAuth?
 }

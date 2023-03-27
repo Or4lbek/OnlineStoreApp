@@ -24,9 +24,13 @@ class OnlineStoreRepositoryImpl(
         }
     }
 
-    override suspend fun loginUser(email: String, password: String): UserAuth? =
+    override suspend fun loginUser(email: String, password: String): Int? =
         withContext(Dispatchers.IO) {
-            mapper.mapDBModelToEntity(onlineStoreDao.loginUser(email, password))
+            mapper.mapDBModelToEntity(onlineStoreDao.loginUser(email, password))?.id
         }
 
+    override suspend fun getUserByTokenId(id: Int): UserAuth? =
+        withContext(Dispatchers.IO) {
+            mapper.mapDBModelToEntity(onlineStoreDao.getUserById(id))
+        }
 }
