@@ -3,9 +3,10 @@ package com.example.onlinestoreapp.presentation.main.feed.latest
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.onlinestoreapp.databinding.LatestItemBinding
+import com.example.onlinestoreapp.databinding.ItemLatestBinding
+import com.example.onlinestoreapp.domain.model.Latest
 
-class LatestViewHolder(private val binding: LatestItemBinding) :
+class LatestViewHolder(private val binding: ItemLatestBinding) :
     RecyclerView.ViewHolder(binding.root) {
     @SuppressLint("SetTextI18n")
     fun bind(latest: Latest) {

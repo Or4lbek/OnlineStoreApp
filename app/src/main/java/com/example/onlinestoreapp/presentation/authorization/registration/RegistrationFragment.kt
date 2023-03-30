@@ -5,7 +5,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.onlinestoreapp.R
 import com.example.onlinestoreapp.databinding.FragmentRegistrationBinding
-import com.example.onlinestoreapp.domain.model.UserAuth
+import com.example.onlinestoreapp.domain.model.User
 import com.example.onlinestoreapp.domain.presentation.AdvancedViewState
 import com.example.onlinestoreapp.utils.base_classes.BaseBindingFragment
 import com.example.onlinestoreapp.utils.checkIsEmailValid
@@ -80,7 +80,7 @@ class RegistrationFragment :
     private fun onClickButtonSignUp() {
         viewModel.onRegistrationEvent(
             RegistrationEvent.OnRegistrationClicked(
-                userAuth = UserAuth(
+                user = User(
                     email = binding.emailEt.text.toString(),
                     name = binding.firstNameEt.text.toString(),
                     password = binding.passwordEt.text.toString()

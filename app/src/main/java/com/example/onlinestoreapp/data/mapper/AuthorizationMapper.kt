@@ -1,28 +1,28 @@
 package com.example.onlinestoreapp.data.mapper
 
-import com.example.onlinestoreapp.data.model.UserAuthDBModel
-import com.example.onlinestoreapp.domain.model.UserAuth
+import com.example.onlinestoreapp.data.model.UserDBModel
+import com.example.onlinestoreapp.domain.model.User
 
 class AuthorizationMapper {
 
-    fun mapEntityToDBModel(userAuth: UserAuth): UserAuthDBModel = UserAuthDBModel(
-        id = userAuth.id,
-        name = userAuth.name,
-        email = userAuth.email,
-        password = userAuth.password,
-        image = userAuth.image
+    fun mapEntityToDBModel(user: User): UserDBModel = UserDBModel(
+        id = user.id,
+        name = user.name,
+        email = user.email,
+        password = user.password,
+        image = user.image
 
     )
 
-    fun mapDBModelToEntity(userAuthDBModel: UserAuthDBModel?): UserAuth? {
-        if (userAuthDBModel == null)
+    fun mapDBModelToEntity(userDBModel: UserDBModel?): User? {
+        if (userDBModel == null)
             return null
-        return UserAuth(
-            id = userAuthDBModel.id,
-            name = userAuthDBModel.name,
-            email = userAuthDBModel.email,
-            password = userAuthDBModel.password,
-            image = userAuthDBModel.image
+        return User(
+            id = userDBModel.id,
+            name = userDBModel.name,
+            email = userDBModel.email,
+            password = userDBModel.password,
+            image = userDBModel.image
         )
     }
 }

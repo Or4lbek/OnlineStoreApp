@@ -66,4 +66,8 @@
     <string name="def_discount">30% off</string>
     <string name="shadow_effect">shadow effect</string>
     <string name="main_image_view_of_product">main image view of product</string>
+    <string name="def_hint_word">Adidas Yeezy</string>
+    <string name="default_image">default image</string>
+    <string name="icon_back_arrow">icon back arrow</string>
+    <string name="color">Color:</string>
 </resources>

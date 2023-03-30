@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.onlinestoreapp.data.model.UserAuthDBModel
+import com.example.onlinestoreapp.data.model.UserDBModel
 
 @Dao
 interface AuthorizationDao {
@@ -12,11 +12,11 @@ interface AuthorizationDao {
     suspend fun checkUserByEmail(email: String): Boolean
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun createUser(userAuthDBModel: UserAuthDBModel)
+    suspend fun createUser(userDBModel: UserDBModel)
 
     @Query("SELECT * FROM users WHERE email = :email AND password = :password")
-    suspend fun loginUser(email: String, password: String): UserAuthDBModel?
+    suspend fun loginUser(email: String, password: String): UserDBModel?
 
     @Query("SELECT * FROM users WHERE id = :id")
-    suspend fun getUserById(id: Int): UserAuthDBModel
+    suspend fun getUserById(id: Int): UserDBModel
 }

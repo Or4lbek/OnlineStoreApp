@@ -1,6 +1,6 @@
-package com.example.onlinestoreapp.presentation.main.feed.latest
+package com.example.onlinestoreapp.data.model
 
-data class Latest(
+data class LatestApiModel(
     val category: String,
     val image_url: String,
     val name: String,

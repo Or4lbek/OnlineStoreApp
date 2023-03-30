@@ -1,6 +1,6 @@
-package com.example.onlinestoreapp.presentation.main.feed.flash_sale
+package com.example.onlinestoreapp.data.model
 
-data class FlashSale(
+data class FlashSaleApiModel(
     val category: String,
     val discount: Int,
     val image_url: String,

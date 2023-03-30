@@ -1,7 +1,9 @@
 package com.example.onlinestoreapp.data.api
 
-import com.example.onlinestoreapp.presentation.main.feed.flash_sale.FlashSaleProducts
-import com.example.onlinestoreapp.presentation.main.feed.latest.LatestProducts
+import com.example.onlinestoreapp.domain.model.DetailProduct
+import com.example.onlinestoreapp.domain.model.FlashSaleProducts
+import com.example.onlinestoreapp.domain.model.LatestProducts
+import com.example.onlinestoreapp.domain.model.HintWords
 import retrofit2.http.GET
 
 interface StoreService {
@@ -10,4 +12,10 @@ interface StoreService {
 
     @GET("a9ceeb6e-416d-4352-bde6-2203416576ac")
     suspend fun getFlashSaleProducts(): FlashSaleProducts
+
+    @GET("4c9cd822-9479-4509-803d-63197e5a9e19")
+    suspend fun getSearchingProducts(): HintWords
+
+    @GET("f7f99d04-4971-45d5-92e0-70333383c239")
+    suspend fun getDetailProduct(): DetailProduct
 }

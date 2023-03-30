@@ -3,9 +3,8 @@ package com.example.onlinestoreapp.domain.model
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
-
 @Parcelize
-data class UserAuth(
+data class User(
     var id: Int = UNDEFINED_ID,
     val email: String,
     var name: String,

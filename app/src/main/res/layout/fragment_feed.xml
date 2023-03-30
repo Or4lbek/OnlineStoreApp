@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,7 +18,7 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="24dp"
             android:contentDescription="@string/burger_icon"
             android:src="@drawable/ic_burger"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -29,7 +29,7 @@
             android:id="@+id/user_image_cv"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginEnd="24dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="250dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -68,18 +68,18 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
+    <AutoCompleteTextView
+        android:id="@+id/search_items_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="56dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_edit_text"
+        android:background="@drawable/shape_rounded_edit_text"
         android:drawableEnd="@drawable/ic_search"
         android:hint="@string/what_are_you_looking_for"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:padding="5dp"
+        android:padding="8dp"
         android:textAlignment="center"
         android:textSize="11sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,151 +93,12 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="110dp" />
 
-    <ImageView
-        android:id="@+id/phones_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/phones"
-        android:padding="10dp"
-        android:src="@drawable/ic_phone"
-        app:layout_constraintEnd_toStartOf="@+id/headphones_iv"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
-
-    <ImageView
-        android:id="@+id/headphones_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/headphones"
-        android:padding="10dp"
-        android:src="@drawable/ic_headphones"
-        app:layout_constraintBottom_toBottomOf="@+id/phones_iv"
-        app:layout_constraintEnd_toStartOf="@+id/games_iv"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/phones_iv"
-        app:layout_constraintTop_toTopOf="@+id/phones_iv" />
-
-    <ImageView
-        android:id="@+id/games_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/games"
-        android:padding="10dp"
-        android:src="@drawable/ic_game"
-        app:layout_constraintBottom_toBottomOf="@+id/headphones_iv"
-        app:layout_constraintEnd_toStartOf="@+id/cars_iv"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/headphones_iv"
-        app:layout_constraintTop_toTopOf="@+id/headphones_iv"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-        android:id="@+id/cars_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/cars"
-        android:padding="10dp"
-        android:src="@drawable/ic_car"
-        app:layout_constraintBottom_toBottomOf="@+id/games_iv"
-        app:layout_constraintEnd_toStartOf="@+id/furniture_iv"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/games_iv"
-        app:layout_constraintTop_toTopOf="@+id/games_iv" />
-
-    <ImageView
-        android:id="@+id/furniture_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/furniture"
-        android:padding="10dp"
-        android:src="@drawable/ic_bed"
-        app:layout_constraintBottom_toBottomOf="@+id/cars_iv"
-        app:layout_constraintEnd_toStartOf="@+id/kids_iv"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/cars_iv"
-        app:layout_constraintTop_toTopOf="@+id/cars_iv" />
-
-    <ImageView
-        android:id="@+id/kids_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/kids"
-        android:padding="10dp"
-        android:src="@drawable/ic_bot"
-        app:layout_constraintBottom_toBottomOf="@+id/furniture_iv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/furniture_iv"
-        app:layout_constraintTop_toTopOf="@+id/furniture_iv" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.50121653" />
-
-    <TextView
-        android:id="@+id/phones_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/phones"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/phones_iv"
-        app:layout_constraintStart_toStartOf="@+id/phones_iv"
-        app:layout_constraintTop_toBottomOf="@+id/phones_iv" />
-
-    <TextView
-        android:id="@+id/games_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/games"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/games_iv"
-        app:layout_constraintStart_toStartOf="@+id/games_iv"
-        app:layout_constraintTop_toBottomOf="@+id/games_iv" />
-
-    <TextView
-        android:id="@+id/cars_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cars"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/cars_iv"
-        app:layout_constraintStart_toStartOf="@+id/cars_iv"
-        app:layout_constraintTop_toBottomOf="@+id/cars_iv" />
-
-    <TextView
-        android:id="@+id/furniture_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/furniture"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/furniture_iv"
-        app:layout_constraintStart_toStartOf="@+id/furniture_iv"
-        app:layout_constraintTop_toBottomOf="@+id/furniture_iv" />
-
-    <TextView
-        android:id="@+id/kids_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/kids"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/kids_iv"
-        app:layout_constraintStart_toStartOf="@+id/kids_iv"
-        app:layout_constraintTop_toBottomOf="@+id/kids_iv" />
-
-    <TextView
-        android:id="@+id/headphones_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/headphones"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/headphones_iv"
-        app:layout_constraintStart_toStartOf="@+id/headphones_iv"
-        app:layout_constraintTop_toBottomOf="@+id/headphones_iv" />
 
     <TextView
         android:id="@+id/latest_tv"
@@ -248,9 +109,9 @@
         android:fontFamily="@font/montserrat_medium"
         android:text="@string/latest"
         android:textColor="@color/black"
-        android:textSize="15sp"
+        android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phones_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/category_rv" />
 
     <TextView
         android:id="@+id/view_all_latest_tv"
@@ -282,6 +143,7 @@
         android:fontFamily="@font/montserrat_medium"
         android:text="@string/flash_sale"
         android:textColor="@color/black"
+        android:textSize="17sp"
         app:layout_constraintStart_toStartOf="@+id/latest_tv"
         app:layout_constraintTop_toBottomOf="@+id/latest_rv" />
 
@@ -289,7 +151,7 @@
         android:id="@+id/flash_sale_rv"
         android:layout_width="0dp"
         android:layout_height="265dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -305,6 +167,18 @@
         app:layout_constraintEnd_toEndOf="@+id/view_all_latest_tv"
         app:layout_constraintTop_toTopOf="@+id/flash_sale_tv"
         tools:ignore="SmallSp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/category_rv"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="6dp"
+        android:overScrollMode="never"
+        android:paddingHorizontal="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_items_et" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

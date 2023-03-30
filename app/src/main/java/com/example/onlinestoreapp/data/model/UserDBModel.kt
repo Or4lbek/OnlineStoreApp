@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import com.example.onlinestoreapp.utils.Constants.USERS
 
 @Entity(tableName = USERS)
-data class UserAuthDBModel(
+data class UserDBModel(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val name: String,

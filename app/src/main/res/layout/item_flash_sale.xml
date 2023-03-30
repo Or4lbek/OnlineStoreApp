@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="4dp">
+    android:padding="5dp">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="115dp"
-        android:layout_height="145dp"
+        android:layout_width="175dp"
+        android:layout_height="220dp"
         android:layout_margin="5dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -16,8 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteY="8dp">
-
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -37,18 +35,18 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/shadow_effect"
+                android:background="@drawable/shape_shadow_effect"
                 android:contentDescription="@string/shadow_effect" />
 
             <TextView
                 android:id="@+id/item_price_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginBottom="16dp"
                 android:text="@string/def_price"
                 android:textColor="@color/white"
-                android:textSize="7sp"
+                android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="SmallSp" />
@@ -57,10 +55,10 @@
                 android:id="@+id/item_name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
+                android:layout_marginBottom="12dp"
                 android:text="@string/new_balance"
                 android:textColor="@color/white"
-                android:textSize="9sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/item_price_tv"
                 app:layout_constraintStart_toStartOf="@+id/item_price_tv"
                 tools:ignore="SmallSp" />
@@ -69,17 +67,32 @@
                 android:id="@+id/item_category_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                android:background="@drawable/rounded_corner_category"
-                android:paddingHorizontal="8dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/shape_rounded_corner_category"
+                android:paddingHorizontal="15dp"
                 android:text="@string/kids"
                 android:textColor="@color/black"
-                android:textSize="6sp"
+                android:textSize="10sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/item_name_tv"
                 app:layout_constraintStart_toStartOf="@+id/item_name_tv"
                 tools:ignore="SmallSp" />
 
+            <TextView
+                android:id="@+id/item_discount_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/shape_rounded_corner_discount"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:text="@string/def_discount"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SmallSp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

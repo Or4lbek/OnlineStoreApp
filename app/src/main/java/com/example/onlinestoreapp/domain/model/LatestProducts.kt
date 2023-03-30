@@ -1,4 +1,4 @@
-package com.example.onlinestoreapp.presentation.main.feed.latest
+package com.example.onlinestoreapp.domain.model
 
 data class LatestProducts(
     val latest: List<Latest>

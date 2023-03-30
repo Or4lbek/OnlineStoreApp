@@ -4,16 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.onlinestoreapp.domain.model.LatestProducts
 import com.example.onlinestoreapp.domain.network.Response
 import com.example.onlinestoreapp.domain.presentation.AdvancedViewState
 import com.example.onlinestoreapp.domain.repository.AuthorizationRepository
 import com.example.onlinestoreapp.domain.repository.OnlineStoreRepository
 import com.example.onlinestoreapp.domain.use_case.GetAuthTokenUseCase
-import com.example.onlinestoreapp.presentation.main.feed.latest.LatestProducts
 import kotlinx.coroutines.launch
 
 class FeedViewModel(
-    private val repository: AuthorizationRepository,
+    private val authorizationRepository: AuthorizationRepository,
     private val getAuthTokenUseCase: GetAuthTokenUseCase,
     private val onlineStoreRepository: OnlineStoreRepository
 ) : ViewModel() {
@@ -21,14 +21,32 @@ class FeedViewModel(
     private val _viewState = MutableLiveData<AdvancedViewState<FeedViewState>>()
     var viewState: LiveData<AdvancedViewState<FeedViewState>> = _viewState
 
+
     fun onFeedEvent(event: FeedEvent) {
         when (event) {
-            is FeedEvent.OnUserTypes -> {
-
-            }
             is FeedEvent.OnScreenOpen -> {
                 fetchUser()
                 fetchLatestProducts()
+                fetchHintWords()
+            }
+        }
+    }
+
+    private fun fetchHintWords() {
+        viewModelScope.launch {
+            when (val hintWordsResponse = onlineStoreRepository.getHintWords()) {
+                is Response.Error -> {
+                    onError(hintWordsResponse.error)
+                }
+                is Response.NetworkError -> onNetworkError()
+                is Response.Success -> {
+                    _viewState.value =
+                        AdvancedViewState.Data(
+                            FeedViewState.OnHintWordsFetched(
+                                hintWords = hintWordsResponse.data
+                            )
+                        )
+                }
             }
         }
     }
@@ -36,7 +54,7 @@ class FeedViewModel(
     private fun fetchUser() {
         _viewState.value = AdvancedViewState.Loading
         viewModelScope.launch {
-            val user = repository.getUserByTokenId(getAuthTokenUseCase())
+            val user = authorizationRepository.getUserByTokenId(getAuthTokenUseCase())
             _viewState.value = AdvancedViewState.Data(FeedViewState.OnUserFetched(user))
         }
     }
@@ -66,7 +84,8 @@ class FeedViewModel(
                     _viewState.value = AdvancedViewState.Data(
                         FeedViewState.AllDataFetched(
                             latestProducts,
-                            flashSaleProductsResponse.data
+                            flashSaleProductsResponse.data,
+                            onlineStoreRepository.getCategories()
                         )
                     )
                 }

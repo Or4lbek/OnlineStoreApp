@@ -27,6 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainContainerView"
+        android:background="@drawable/shape_rounded_corner_btm_nav"
         app:menu="@menu/menu_bottom_main" />
 
 
