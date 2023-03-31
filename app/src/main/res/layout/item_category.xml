@@ -13,13 +13,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_car"
-        android:contentDescription="@string/default_image" />
+        android:contentDescription="@string/placeholder_image" />
 
     <TextView
         android:id="@+id/item_category_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/category"
+        android:text="@string/placeholder_category"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/item_category_iv"
         app:layout_constraintStart_toStartOf="@+id/item_category_iv"

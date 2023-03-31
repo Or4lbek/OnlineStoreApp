@@ -16,6 +16,7 @@ class App : Application() {
             modules(viewModelModule)
             modules(useCaseModule)
             modules(apiModule)
+            modules(mapperModule)
         }
     }
 }

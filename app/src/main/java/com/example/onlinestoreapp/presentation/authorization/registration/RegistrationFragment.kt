@@ -60,7 +60,7 @@ class RegistrationFragment :
             is RegistrationViewState.ShowUserSuccessfullyCreated -> {
                 Toast.makeText(
                     requireContext(),
-                    getString(R.string.successfully_created),
+                    getString(R.string.successfully_created_account),
                     Toast.LENGTH_SHORT
                 ).show()
                 findNavController().navigate(

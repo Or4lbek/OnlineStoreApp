@@ -1,4 +1,4 @@
-package com.example.onlinestoreapp.data.mapper
+package com.example.onlinestoreapp.domain.mapper
 
 abstract class Mapper<FROM, TO> {
 

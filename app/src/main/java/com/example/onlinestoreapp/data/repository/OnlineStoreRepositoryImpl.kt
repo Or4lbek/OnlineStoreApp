@@ -2,6 +2,9 @@ package com.example.onlinestoreapp.data.repository
 
 import com.example.onlinestoreapp.R
 import com.example.onlinestoreapp.data.api.StoreService
+import com.example.onlinestoreapp.data.mapper.*
+import com.example.onlinestoreapp.data.model.CategoriesApiModel
+import com.example.onlinestoreapp.data.model.CategoryApiModel
 import com.example.onlinestoreapp.domain.model.*
 import com.example.onlinestoreapp.domain.network.Response
 import com.example.onlinestoreapp.domain.repository.OnlineStoreRepository
@@ -9,12 +12,21 @@ import com.example.onlinestoreapp.utils.catchError
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class OnlineStoreRepositoryImpl(private val service: StoreService) : OnlineStoreRepository {
+class OnlineStoreRepositoryImpl(
+    private val service: StoreService,
+    private val latestProductsApiModelMapper: LatestProductsApiModelMapper,
+    private val flashSaleProductsApiModelMapper: FlashSaleProductsApiModelMapper,
+    private val hintWordsApiModelMapper: HintWordsApiModelMapper,
+    private val detailProductApiModelMapper: DetailProductApiModelMapper,
+    private val categoriesApiModelMapper: CategoriesApiModelMapper
+) : OnlineStoreRepository {
 
     override suspend fun getLatestProducts(): Response<LatestProducts> {
         return try {
             withContext(Dispatchers.IO) {
-                Response.Success(service.getLatestProducts())
+                latestProductsApiModelMapper.map(
+                    Response.Success(service.getLatestProducts())
+                )
             }
         } catch (e: Exception) {
             e.catchError()
@@ -24,7 +36,7 @@ class OnlineStoreRepositoryImpl(private val service: StoreService) : OnlineStore
     override suspend fun getFlashSaleProducts(): Response<FlashSaleProducts> {
         return try {
             withContext(Dispatchers.IO) {
-                Response.Success(service.getFlashSaleProducts())
+                flashSaleProductsApiModelMapper.map(Response.Success(service.getFlashSaleProducts()))
             }
         } catch (e: Exception) {
             e.catchError()
@@ -34,7 +46,7 @@ class OnlineStoreRepositoryImpl(private val service: StoreService) : OnlineStore
     override suspend fun getHintWords(): Response<HintWords> {
         return try {
             withContext(Dispatchers.IO) {
-                Response.Success(service.getSearchingProducts())
+                hintWordsApiModelMapper.map(Response.Success(service.getSearchingProducts()))
             }
         } catch (e: Exception) {
             e.catchError()
@@ -44,7 +56,7 @@ class OnlineStoreRepositoryImpl(private val service: StoreService) : OnlineStore
     override suspend fun getDetailProduct(): Response<DetailProduct> {
         return try {
             withContext(Dispatchers.IO) {
-                Response.Success(service.getDetailProduct())
+                detailProductApiModelMapper.map(Response.Success(service.getDetailProduct()))
             }
         } catch (e: Exception) {
             e.catchError()
@@ -52,15 +64,15 @@ class OnlineStoreRepositoryImpl(private val service: StoreService) : OnlineStore
     }
 
     override suspend fun getCategories(): Categories {
-        val categories = mutableListOf<Category>()
-        categories.add(Category(name = "Phones", image = R.drawable.ic_phone))
-        categories.add(Category(name = "Headphones", image = R.drawable.ic_headphones))
-        categories.add(Category(name = "Games", image = R.drawable.ic_game))
-        categories.add(Category(name = "Cars", image = R.drawable.ic_car))
-        categories.add(Category(name = "Furniture", image = R.drawable.ic_bed))
-        categories.add(Category(name = "Kids", image = R.drawable.ic_bot))
-        categories.add(Category(name = "Phones", image = R.drawable.ic_phone))
-        categories.add(Category(name = "Headphones", image = R.drawable.ic_headphones))
-        return Categories(categories)
+        val categories = mutableListOf<CategoryApiModel>()
+        categories.add(CategoryApiModel(name = "Phones", image = R.drawable.ic_phone))
+        categories.add(CategoryApiModel(name = "Headphones", image = R.drawable.ic_headphones))
+        categories.add(CategoryApiModel(name = "Games", image = R.drawable.ic_game))
+        categories.add(CategoryApiModel(name = "Cars", image = R.drawable.ic_car))
+        categories.add(CategoryApiModel(name = "Furniture", image = R.drawable.ic_bed))
+        categories.add(CategoryApiModel(name = "Kids", image = R.drawable.ic_bot))
+        categories.add(CategoryApiModel(name = "Phones", image = R.drawable.ic_phone))
+        categories.add(CategoryApiModel(name = "Headphones", image = R.drawable.ic_headphones))
+        return categoriesApiModelMapper.map(CategoriesApiModel(categories))
     }
 }

@@ -26,7 +26,7 @@ fun TextInputLayout.checkPasswordLength(context: Context) {
             return@doOnTextChanged
         }
 
-        error = if (text.length < 8) context.getString(R.string.need_more_8) else null
+        error = if (text.length < 8) context.getString(R.string.un_valid_password) else null
     }
 }
 
