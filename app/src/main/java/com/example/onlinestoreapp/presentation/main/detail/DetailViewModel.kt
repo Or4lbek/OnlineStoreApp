@@ -17,29 +17,8 @@ class DetailViewModel(
     private val _viewState = MutableLiveData<AdvancedViewState<DetailViewState>>()
     val viewState: LiveData<AdvancedViewState<DetailViewState>> = _viewState
 
-    private var totalAmount: Int = 0;
-    private var price: Int = 0
-
     init {
         fetchDetailProduct()
-    }
-
-    fun onDetailEvent(event: DetailEvent) {
-        when (event) {
-            DetailEvent.OnQuantityAdded -> {
-                totalAmount += price
-                _viewState.value =
-                    AdvancedViewState.Data(DetailViewState.OnBasketChanged(totalAmount))
-            }
-            DetailEvent.OnQuantitySubtracted -> {
-                totalAmount -= price
-                if (totalAmount < 0) {
-                    totalAmount = 0
-                }
-                _viewState.value =
-                    AdvancedViewState.Data(DetailViewState.OnBasketChanged(totalAmount))
-            }
-        }
     }
 
     private fun fetchDetailProduct() {
@@ -52,7 +31,6 @@ class DetailViewModel(
                     _viewState.value = AdvancedViewState.Data(
                         DetailViewState.AllDataFetched(detailProduct.data)
                     )
-                    price = detailProduct.data.price
                 }
             }
         }
