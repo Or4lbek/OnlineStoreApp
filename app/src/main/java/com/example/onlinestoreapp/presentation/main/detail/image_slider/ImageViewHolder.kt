@@ -9,6 +9,5 @@ class ImageViewHolder(private val binding: ItemImageSliderBinding) :
 
     fun bind(imageUrl: String) {
         Glide.with(itemView.context).load(imageUrl).into(binding.itemSliderIv)
-
     }
 }

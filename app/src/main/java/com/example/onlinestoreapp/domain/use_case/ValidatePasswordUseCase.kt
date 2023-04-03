@@ -1,5 +1,6 @@
 package com.example.onlinestoreapp.domain.use_case
 
+import com.example.onlinestoreapp.R
 import com.example.onlinestoreapp.domain.model.ValidationResult
 
 class ValidatePasswordUseCase {
@@ -7,7 +8,7 @@ class ValidatePasswordUseCase {
         if (password.length < 8) {
             return ValidationResult(
                 successful = false,
-                errorMessage = "The password needs to consist of at least 8 characters"
+                errorMessage = R.string.password_length_validation_message
             )
         }
         val containsLettersAndDigits =
@@ -15,7 +16,7 @@ class ValidatePasswordUseCase {
         if (!containsLettersAndDigits) {
             return ValidationResult(
                 successful = false,
-                errorMessage = "The password needs to contain at least one letter and digit"
+                errorMessage = R.string.password_validation_message
             )
         }
         return ValidationResult(successful = true)

@@ -6,7 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.example.onlinestoreapp.R
 import com.example.onlinestoreapp.databinding.FragmentSplashBinding
-import com.example.onlinestoreapp.domain.presentation.AdvancedViewState
+import com.example.onlinestoreapp.domain.presentation.ViewState
 import com.example.onlinestoreapp.utils.base_classes.BaseBindingFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -32,19 +32,20 @@ class SplashFragment : BaseBindingFragment<FragmentSplashBinding>(FragmentSplash
         }
     }
 
-    private fun handleViewStateChanges(viewState: AdvancedViewState<SplashViewState>) {
+    private fun handleViewStateChanges(viewState: ViewState<SplashViewState>) {
         when (viewState) {
-            is AdvancedViewState.Data -> {
+            is ViewState.Data -> {
                 handleSplashViewState(viewState.data)
             }
-            is AdvancedViewState.Error -> {
+            is ViewState.Error -> {
                 hideDialog()
-                Toast.makeText(context, viewState.error, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, resources.getString(viewState.error), Toast.LENGTH_SHORT)
+                    .show()
             }
-            AdvancedViewState.Loading -> {
+            ViewState.Loading -> {
                 showDialog()
             }
-            AdvancedViewState.NetworkError -> {
+            ViewState.NetworkError -> {
                 hideDialog()
             }
         }

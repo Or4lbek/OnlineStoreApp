@@ -11,7 +11,6 @@ class AuthorizationMapper {
         email = user.email,
         password = user.password,
         image = user.image
-
     )
 
     fun mapDBModelToEntity(userDBModel: UserDBModel?): User? {

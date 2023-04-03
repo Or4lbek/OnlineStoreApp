@@ -10,7 +10,7 @@ class LatestProductListAdapter : ListAdapter<Latest, LatestViewHolder>(LatestDif
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LatestViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ItemLatestBinding.inflate(layoutInflater, parent, false)
-        return LatestViewHolder(binding)
+        return LatestViewHolder(binding, parent.context)
     }
 
     override fun onBindViewHolder(holder: LatestViewHolder, position: Int) {

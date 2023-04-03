@@ -10,7 +10,7 @@ import com.example.onlinestoreapp.R
 import com.example.onlinestoreapp.databinding.FragmentFeedBinding
 import com.example.onlinestoreapp.domain.model.HintWords
 import com.example.onlinestoreapp.domain.model.User
-import com.example.onlinestoreapp.domain.presentation.AdvancedViewState
+import com.example.onlinestoreapp.domain.presentation.ViewState
 import com.example.onlinestoreapp.presentation.main.feed.category.CategoryListAdapter
 import com.example.onlinestoreapp.presentation.main.feed.flash_sale.FlashSaleProductListAdapter
 import com.example.onlinestoreapp.presentation.main.feed.latest.LatestProductListAdapter
@@ -50,19 +50,20 @@ class FeedFragment : BaseBindingFragment<FragmentFeedBinding>(FragmentFeedBindin
         }
     }
 
-    private fun handleViewStateChanges(viewState: AdvancedViewState<FeedViewState>) {
+    private fun handleViewStateChanges(viewState: ViewState<FeedViewState>) {
         when (viewState) {
-            is AdvancedViewState.Data -> {
+            is ViewState.Data -> {
                 handleFeedViewState(viewState.data)
             }
-            is AdvancedViewState.Error -> {
+            is ViewState.Error -> {
                 hideDialog()
-                Toast.makeText(context, viewState.error, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, resources.getString(viewState.error), Toast.LENGTH_SHORT)
+                    .show()
             }
-            AdvancedViewState.Loading -> {
+            ViewState.Loading -> {
                 showDialog()
             }
-            AdvancedViewState.NetworkError -> {
+            ViewState.NetworkError -> {
                 hideDialog()
             }
         }
@@ -92,6 +93,7 @@ class FeedFragment : BaseBindingFragment<FragmentFeedBinding>(FragmentFeedBindin
     }
 
     private fun updateUserImage(user: User?) {
-        Glide.with(requireContext()).load(user?.image).into(binding.userImageIv)
+        Glide.with(requireContext()).load(user?.image).placeholder(R.drawable.placeholder_avatar)
+            .into(binding.userImageIv)
     }
 }

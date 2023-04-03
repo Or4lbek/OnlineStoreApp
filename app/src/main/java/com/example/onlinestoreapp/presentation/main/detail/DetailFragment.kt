@@ -1,6 +1,5 @@
 package com.example.onlinestoreapp.presentation.main.detail
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
@@ -9,9 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.example.onlinestoreapp.R
 import com.example.onlinestoreapp.databinding.FragmentDetailBinding
 import com.example.onlinestoreapp.domain.model.DetailProduct
-import com.example.onlinestoreapp.domain.presentation.AdvancedViewState
+import com.example.onlinestoreapp.domain.presentation.ViewState
 import com.example.onlinestoreapp.presentation.main.detail.colors.ColorListAdapter
 import com.example.onlinestoreapp.presentation.main.detail.image_slider.ImageSliderAdapter
 import com.example.onlinestoreapp.utils.base_classes.BaseBindingFragment
@@ -57,20 +57,20 @@ class DetailFragment : BaseBindingFragment<FragmentDetailBinding>(FragmentDetail
         }
     }
 
-    private fun handleViewStateChanges(viewState: AdvancedViewState<DetailViewState>) {
+    private fun handleViewStateChanges(viewState: ViewState<DetailViewState>) {
         when (viewState) {
-            is AdvancedViewState.Data -> {
+            is ViewState.Data -> {
                 hideDialog()
                 handleDetailViewState(viewState.data)
             }
-            is AdvancedViewState.Error -> {
+            is ViewState.Error -> {
                 hideDialog()
-                Toast.makeText(context, viewState.error, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, resources.getString(viewState.error), Toast.LENGTH_SHORT).show()
             }
-            AdvancedViewState.Loading -> {
+            ViewState.Loading -> {
                 showDialog()
             }
-            AdvancedViewState.NetworkError -> {
+            ViewState.NetworkError -> {
                 hideDialog()
             }
         }
@@ -81,20 +81,23 @@ class DetailFragment : BaseBindingFragment<FragmentDetailBinding>(FragmentDetail
             is DetailViewState.AllDataFetched -> {
                 updateViews(viewState.detailProduct)
             }
-            is DetailViewState.OnBasketChanged -> {
-
-            }
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private fun updateViews(detailProduct: DetailProduct) = with(binding) {
-        (productSliderVp2.adapter as ImageSliderAdapter).submitList(detailProduct.image_urls)
+        (productSliderVp2.adapter as ImageSliderAdapter).submitList(detailProduct.imageUrls)
         (detailColorsRv.adapter as ColorListAdapter).submitList(detailProduct.colors)
         detailNameTv.text = detailProduct.name
         detailDescriptionTv.text = detailProduct.description
-        detailReviewsTv.text = "(${detailProduct.number_of_reviews} reviews)"
+        val reviewsString = requireContext().resources.getString(
+            R.string.product_reviews
+        )
+        detailReviewsTv.text = String.format(reviewsString, detailProduct.numberOfReviews)
         detailRatingTv.text = detailProduct.rating.toString()
-        detailPriceTv.text = "$ ${detailProduct.price}.00"
+        val priceString = requireContext().resources.getString(
+            R.string.product_price
+        )
+        detailPriceTv.text = String.format(priceString, detailProduct.price)
+
     }
 }

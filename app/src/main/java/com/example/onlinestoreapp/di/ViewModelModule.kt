@@ -1,7 +1,7 @@
 package com.example.onlinestoreapp.di
 
-import com.example.onlinestoreapp.presentation.authorization.login.LoginViewModel
-import com.example.onlinestoreapp.presentation.authorization.registration.RegistrationViewModel
+import com.example.onlinestoreapp.presentation.login.LoginViewModel
+import com.example.onlinestoreapp.presentation.registration.RegistrationViewModel
 import com.example.onlinestoreapp.presentation.main.detail.DetailViewModel
 import com.example.onlinestoreapp.presentation.main.feed.FeedViewModel
 import com.example.onlinestoreapp.presentation.main.profile.ProfileViewModel

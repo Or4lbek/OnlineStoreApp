@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.onlinestoreapp.domain.model.LatestProducts
 import com.example.onlinestoreapp.domain.network.Response
-import com.example.onlinestoreapp.domain.presentation.AdvancedViewState
+import com.example.onlinestoreapp.domain.presentation.ViewState
 import com.example.onlinestoreapp.domain.repository.AuthorizationRepository
 import com.example.onlinestoreapp.domain.repository.OnlineStoreRepository
 import com.example.onlinestoreapp.domain.use_case.GetAuthTokenUseCase
@@ -18,8 +18,8 @@ class FeedViewModel(
     private val onlineStoreRepository: OnlineStoreRepository
 ) : ViewModel() {
 
-    private val _viewState = MutableLiveData<AdvancedViewState<FeedViewState>>()
-    var viewState: LiveData<AdvancedViewState<FeedViewState>> = _viewState
+    private val _viewState = MutableLiveData<ViewState<FeedViewState>>()
+    var viewState: LiveData<ViewState<FeedViewState>> = _viewState
 
 
     fun onFeedEvent(event: FeedEvent) {
@@ -41,7 +41,7 @@ class FeedViewModel(
                 is Response.NetworkError -> onNetworkError()
                 is Response.Success -> {
                     _viewState.value =
-                        AdvancedViewState.Data(
+                        ViewState.Data(
                             FeedViewState.OnHintWordsFetched(
                                 hintWords = hintWordsResponse.data
                             )
@@ -52,10 +52,10 @@ class FeedViewModel(
     }
 
     private fun fetchUser() {
-        _viewState.value = AdvancedViewState.Loading
+        _viewState.value = ViewState.Loading
         viewModelScope.launch {
             val user = authorizationRepository.getUserByTokenId(getAuthTokenUseCase())
-            _viewState.value = AdvancedViewState.Data(FeedViewState.OnUserFetched(user))
+            _viewState.value = ViewState.Data(FeedViewState.OnUserFetched(user))
         }
     }
 
@@ -81,7 +81,7 @@ class FeedViewModel(
                 }
                 is Response.NetworkError -> onNetworkError()
                 is Response.Success -> {
-                    _viewState.value = AdvancedViewState.Data(
+                    _viewState.value = ViewState.Data(
                         FeedViewState.AllDataFetched(
                             latestProducts,
                             flashSaleProductsResponse.data,
@@ -93,9 +93,9 @@ class FeedViewModel(
         }
     }
 
-    private fun onError(errorString: String) =
-        _viewState.postValue(AdvancedViewState.Error(errorString))
+    private fun onError(errorString: Int) =
+        _viewState.postValue(ViewState.Error(errorString))
 
     private fun onNetworkError() =
-        _viewState.postValue(AdvancedViewState.NetworkError)
+        _viewState.postValue(ViewState.NetworkError)
 }

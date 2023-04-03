@@ -9,9 +9,9 @@ class DetailProductApiModelMapper : ResponseResultMapper<DetailProductApiModel, 
     override fun mapData(from: DetailProductApiModel) = DetailProduct(
         colors = from.colors,
         description = from.description,
-        image_urls = from.image_urls,
+        imageUrls = from.imageUrls,
         name = from.name,
-        number_of_reviews = from.number_of_reviews,
+        numberOfReviews = from.numberOfReviews,
         price = from.price,
         rating = from.rating
     )

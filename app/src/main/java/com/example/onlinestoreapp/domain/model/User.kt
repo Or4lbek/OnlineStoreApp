@@ -9,15 +9,9 @@ data class User(
     val email: String,
     var name: String,
     var password: String,
-    var image: String = DEFAULT_IMAGE
+    var image: String? = null
 ) : Parcelable {
     companion object {
         const val UNDEFINED_ID = 0
-        const val DEFAULT_IMAGE =
-            "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
-    }
-
-    override fun toString(): String {
-        return "UserAuth(id=$id, email='$email', name='$name', password='$password')"
     }
 }

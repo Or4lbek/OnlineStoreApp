@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.onlinestoreapp.databinding.ItemImageSliderBinding
 
 
-class ImageSliderAdapter() :
+class ImageSliderAdapter :
     ListAdapter<String, ImageViewHolder>(ImageModelDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.onlinestoreapp.domain.presentation.AdvancedViewState
+import com.example.onlinestoreapp.domain.presentation.ViewState
 import com.example.onlinestoreapp.domain.repository.AuthorizationRepository
 import com.example.onlinestoreapp.domain.use_case.GetAuthTokenUseCase
 import com.example.onlinestoreapp.domain.use_case.RemoveAuthTokenUseCase
@@ -16,8 +16,8 @@ class ProfileViewModel(
     private val removeAuthTokenUseCase: RemoveAuthTokenUseCase
 ) : ViewModel() {
 
-    private val _viewState = MutableLiveData<AdvancedViewState<ProfileViewState>>()
-    var viewState: LiveData<AdvancedViewState<ProfileViewState>> = _viewState
+    private val _viewState = MutableLiveData<ViewState<ProfileViewState>>()
+    var viewState: LiveData<ViewState<ProfileViewState>> = _viewState
 
     fun onProfileEvent(event: ProfileEvent) {
         when (event) {
@@ -27,7 +27,7 @@ class ProfileViewModel(
             is ProfileEvent.OnUserLogOut -> {
                 onUserLogOut()
             }
-            is ProfileEvent.onScreenOpen -> {
+            is ProfileEvent.OnScreenOpen -> {
                 onScreenOpen()
             }
         }
@@ -39,11 +39,11 @@ class ProfileViewModel(
             if (updatedUser != null) {
                 updatedUser.image = imageUri
                 repository.createUser(updatedUser)
-                _viewState.value = AdvancedViewState.Data(
+                _viewState.value = ViewState.Data(
                     ProfileViewState.ShowUserImageSuccessfullyUpdated
                 )
             } else {
-                _viewState.value = AdvancedViewState.Data(
+                _viewState.value = ViewState.Data(
                     ProfileViewState.ShowUserImageWasNotUpdated
                 )
             }
@@ -53,7 +53,7 @@ class ProfileViewModel(
     private fun onScreenOpen() {
         viewModelScope.launch {
             val user = repository.getUserByTokenId(getAuthTokenUseCase())
-            _viewState.value = AdvancedViewState.Data(ProfileViewState.OnUserFetched(user))
+            _viewState.value = ViewState.Data(ProfileViewState.OnUserFetched(user))
         }
     }
 

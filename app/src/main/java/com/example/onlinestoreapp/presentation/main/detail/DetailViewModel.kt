@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.onlinestoreapp.domain.network.Response
-import com.example.onlinestoreapp.domain.presentation.AdvancedViewState
+import com.example.onlinestoreapp.domain.presentation.ViewState
 import com.example.onlinestoreapp.domain.repository.OnlineStoreRepository
 import kotlinx.coroutines.launch
 
@@ -14,21 +14,21 @@ class DetailViewModel(
     private val onlineStoreRepository: OnlineStoreRepository
 ) : ViewModel() {
 
-    private val _viewState = MutableLiveData<AdvancedViewState<DetailViewState>>()
-    val viewState: LiveData<AdvancedViewState<DetailViewState>> = _viewState
+    private val _viewState = MutableLiveData<ViewState<DetailViewState>>()
+    val viewState: LiveData<ViewState<DetailViewState>> = _viewState
 
     init {
         fetchDetailProduct()
     }
 
     private fun fetchDetailProduct() {
-        _viewState.value = AdvancedViewState.Loading
+        _viewState.value = ViewState.Loading
         viewModelScope.launch {
             when (val detailProduct = onlineStoreRepository.getDetailProduct()) {
                 is Response.Error -> onError(detailProduct.error)
                 Response.NetworkError -> onNetworkError()
                 is Response.Success -> {
-                    _viewState.value = AdvancedViewState.Data(
+                    _viewState.value = ViewState.Data(
                         DetailViewState.AllDataFetched(detailProduct.data)
                     )
                 }
@@ -36,9 +36,9 @@ class DetailViewModel(
         }
     }
 
-    private fun onError(errorString: String) =
-        _viewState.postValue(AdvancedViewState.Error(errorString))
+    private fun onError(errorString: Int) =
+        _viewState.postValue(ViewState.Error(errorString))
 
     private fun onNetworkError() =
-        _viewState.postValue(AdvancedViewState.NetworkError)
+        _viewState.postValue(ViewState.NetworkError)
 }

@@ -11,7 +11,7 @@ class FlashSaleProductListAdapter(private val myCallBack: (result: String) -> Un
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlashSaleViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ItemFlashSaleBinding.inflate(layoutInflater, parent, false)
-        return FlashSaleViewHolder(binding)
+        return FlashSaleViewHolder(binding, parent.context)
     }
 
     override fun onBindViewHolder(holder: FlashSaleViewHolder, position: Int) {

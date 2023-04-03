@@ -18,7 +18,7 @@ class LatestProductsApiModelMapper :
 
     private fun getLatestProducts(from: LatestApiModel) = Latest(
         category = from.category,
-        image_url = from.image_url,
+        imageUrl = from.imageUrl,
         name = from.name,
         price = from.price
     )

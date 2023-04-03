@@ -1,4 +1,4 @@
-package com.example.onlinestoreapp.presentation.authorization.login
+package com.example.onlinestoreapp.presentation.login
 
 import android.os.Bundle
 import android.widget.Toast
@@ -6,7 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.example.onlinestoreapp.R
 import com.example.onlinestoreapp.databinding.FragmentLoginBinding
-import com.example.onlinestoreapp.domain.presentation.AdvancedViewState
+import com.example.onlinestoreapp.domain.presentation.ViewState
 import com.example.onlinestoreapp.utils.base_classes.BaseBindingFragment
 import com.example.onlinestoreapp.utils.checkIsEmailValid
 import com.example.onlinestoreapp.utils.checkPasswordLength
@@ -36,20 +36,21 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>(FragmentLoginBin
         }
     }
 
-    private fun handleViewStateChanges(viewState: AdvancedViewState<LoginViewState>) {
+    private fun handleViewStateChanges(viewState: ViewState<LoginViewState>) {
         when (viewState) {
-            is AdvancedViewState.Data -> {
+            is ViewState.Data -> {
                 hideDialog()
                 handleLoginViewState(viewState.data)
             }
-            is AdvancedViewState.Error -> {
+            is ViewState.Error -> {
                 hideDialog()
-                Toast.makeText(context, viewState.error, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, resources.getString(viewState.error), Toast.LENGTH_SHORT)
+                    .show()
             }
-            AdvancedViewState.Loading -> {
+            ViewState.Loading -> {
                 showDialog()
             }
-            AdvancedViewState.NetworkError -> {
+            ViewState.NetworkError -> {
                 hideDialog()
             }
         }

@@ -1,4 +1,4 @@
-package com.example.onlinestoreapp.presentation.authorization.registration
+package com.example.onlinestoreapp.presentation.registration
 
 sealed class RegistrationViewState {
     object ShowUserWasNotCreated : RegistrationViewState()

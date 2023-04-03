@@ -10,7 +10,7 @@ class CategoryListAdapter : ListAdapter<Category, CategoryViewHolder>(CategoryDi
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ItemCategoryBinding.inflate(layoutInflater, parent, false)
-        return CategoryViewHolder(binding)
+        return CategoryViewHolder(binding, parent.context)
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {

@@ -1,10 +1,10 @@
 package com.example.onlinestoreapp.data.repository
 
 import com.example.onlinestoreapp.R
-import com.example.onlinestoreapp.data.api.StoreService
 import com.example.onlinestoreapp.data.mapper.*
 import com.example.onlinestoreapp.data.model.CategoriesApiModel
 import com.example.onlinestoreapp.data.model.CategoryApiModel
+import com.example.onlinestoreapp.data.remote.StoreService
 import com.example.onlinestoreapp.domain.model.*
 import com.example.onlinestoreapp.domain.network.Response
 import com.example.onlinestoreapp.domain.repository.OnlineStoreRepository
@@ -65,14 +65,29 @@ class OnlineStoreRepositoryImpl(
 
     override suspend fun getCategories(): Categories {
         val categories = mutableListOf<CategoryApiModel>()
-        categories.add(CategoryApiModel(name = "Phones", image = R.drawable.ic_phone))
-        categories.add(CategoryApiModel(name = "Headphones", image = R.drawable.ic_headphones))
-        categories.add(CategoryApiModel(name = "Games", image = R.drawable.ic_game))
-        categories.add(CategoryApiModel(name = "Cars", image = R.drawable.ic_car))
-        categories.add(CategoryApiModel(name = "Furniture", image = R.drawable.ic_bed))
-        categories.add(CategoryApiModel(name = "Kids", image = R.drawable.ic_bot))
-        categories.add(CategoryApiModel(name = "Phones", image = R.drawable.ic_phone))
-        categories.add(CategoryApiModel(name = "Headphones", image = R.drawable.ic_headphones))
+        categories.add(
+            CategoryApiModel(
+                name = R.string.phones,
+                image = R.drawable.ic_phone
+            )
+        )
+        categories.add(
+            CategoryApiModel(
+                name = R.string.headphones,
+                image = R.drawable.ic_headphones
+            )
+        )
+        categories.add(CategoryApiModel(name = R.string.games, image = R.drawable.ic_game))
+        categories.add(CategoryApiModel(name = R.string.cars, image = R.drawable.ic_car))
+        categories.add(CategoryApiModel(name = R.string.furniture, image = R.drawable.ic_bed))
+        categories.add(CategoryApiModel(name = R.string.kids, image = R.drawable.ic_bot))
+        categories.add(CategoryApiModel(name = R.string.phones, image = R.drawable.ic_phone))
+        categories.add(
+            CategoryApiModel(
+                name = R.string.headphones,
+                image = R.drawable.ic_headphones
+            )
+        )
         return categoriesApiModelMapper.map(CategoriesApiModel(categories))
     }
 }

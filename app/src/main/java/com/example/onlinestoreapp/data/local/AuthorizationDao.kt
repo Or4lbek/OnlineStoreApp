@@ -1,4 +1,4 @@
-package com.example.onlinestoreapp.data.db
+package com.example.onlinestoreapp.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert

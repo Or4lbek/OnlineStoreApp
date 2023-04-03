@@ -7,8 +7,4 @@ sealed class DetailViewState {
     data class AllDataFetched(
         val detailProduct: DetailProduct
     ) : DetailViewState()
-
-    data class OnBasketChanged(
-        val basket: Int
-    ) : DetailViewState()
 }

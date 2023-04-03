@@ -1,4 +1,4 @@
-package com.example.onlinestoreapp.presentation.authorization.registration
+package com.example.onlinestoreapp.presentation.registration
 
 import com.example.onlinestoreapp.domain.model.User
 

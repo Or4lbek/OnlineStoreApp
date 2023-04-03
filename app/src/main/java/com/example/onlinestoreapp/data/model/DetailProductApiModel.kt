@@ -1,11 +1,15 @@
 package com.example.onlinestoreapp.data.model
 
+import com.google.gson.annotations.SerializedName
+
 data class DetailProductApiModel(
     val colors: List<String>,
     val description: String,
-    val image_urls: List<String>,
+    @SerializedName("image_urls")
+    val imageUrls: List<String>,
     val name: String,
-    val number_of_reviews: Int,
+    @SerializedName("number_of_reviews")
+    val numberOfReviews: Int,
     val price: Int,
     val rating: Double
 )

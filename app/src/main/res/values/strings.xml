@@ -72,4 +72,20 @@
     <string name="trade_history">Trade History</string>
     <string name="restore_purchase">Restore Purchase</string>
     <string name="help">Help</string>
+
+
+    <!--Strings for adapters   -->
+    <string name="product_price">$ %1\$s.00</string>
+    <string name="product_reviews">(%,d reviews)</string>
+    <string name="flash_sale_price">$ %s</string>
+    <string name="flash_sale_discount">%s%% off</string>
+
+    <!--Use cases Strings    -->
+    <string name="password_validation_message">The password needs to contain at least one letter and digit</string>
+    <string name="password_length_validation_message">The password needs to consist of at least 8 characters</string>
+    <string name="name_blank_validation_message">The name can not be blank</string>
+    <string name="email_blank_validation_message">The email can not be blank</string>
+    <string name="email_invalid_validation_message">That is not a valid email</string>
+    <string name="http_exception_message">HttpException</string>
+    <string name="something_went_wrong_message">Something went wrong</string>
 </resources>

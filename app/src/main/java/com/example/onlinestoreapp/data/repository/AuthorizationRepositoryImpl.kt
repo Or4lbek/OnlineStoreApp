@@ -1,6 +1,6 @@
 package com.example.onlinestoreapp.data.repository
 
-import com.example.onlinestoreapp.data.db.AuthorizationDao
+import com.example.onlinestoreapp.data.local.AuthorizationDao
 import com.example.onlinestoreapp.data.mapper.AuthorizationMapper
 import com.example.onlinestoreapp.domain.model.User
 import com.example.onlinestoreapp.domain.repository.AuthorizationRepository

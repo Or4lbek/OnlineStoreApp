@@ -1,4 +1,4 @@
-package com.example.onlinestoreapp.presentation.authorization.login
+package com.example.onlinestoreapp.presentation.login
 
 sealed class LoginViewState {
 

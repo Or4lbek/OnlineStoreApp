@@ -1,10 +1,10 @@
-package com.example.onlinestoreapp.presentation.authorization.login
+package com.example.onlinestoreapp.presentation.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.onlinestoreapp.domain.presentation.AdvancedViewState
+import com.example.onlinestoreapp.domain.presentation.ViewState
 import com.example.onlinestoreapp.domain.repository.AuthorizationRepository
 import com.example.onlinestoreapp.domain.use_case.CreateAuthTokenUseCase
 import com.example.onlinestoreapp.domain.use_case.ValidateEmailUseCase
@@ -20,8 +20,8 @@ class LoginViewModel(
     private val createAuthTokenUseCase: CreateAuthTokenUseCase
 ) : ViewModel() {
 
-    private val _viewState = MutableLiveData<AdvancedViewState<LoginViewState>>()
-    val viewState: LiveData<AdvancedViewState<LoginViewState>> = _viewState
+    private val _viewState = MutableLiveData<ViewState<LoginViewState>>()
+    val viewState: LiveData<ViewState<LoginViewState>> = _viewState
 
     fun onLoginEvent(event: LoginEvent) {
         when (event) {
@@ -39,7 +39,7 @@ class LoginViewModel(
         val errorResult = results.firstOrNull { it.errorMessage != null }
 
         if (errorResult?.errorMessage != null) {
-            _viewState.value = AdvancedViewState.Error(errorResult.errorMessage)
+            _viewState.value = ViewState.Error(errorResult.errorMessage)
             return
         }
         loginUser(email, password)
@@ -48,13 +48,13 @@ class LoginViewModel(
 
     private fun loginUser(email: String, password: String) {
         viewModelScope.launch {
-            _viewState.value = AdvancedViewState.Loading
+            _viewState.value = ViewState.Loading
             delay(2000)
             val userId = repository.loginUser(
                 email,
                 password
             )
-            _viewState.value = AdvancedViewState.Data(
+            _viewState.value = ViewState.Data(
                 if (userId != null) {
                     createAuthToken(userId)
                     LoginViewState.OnUserFetched

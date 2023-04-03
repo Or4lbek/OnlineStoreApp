@@ -1,4 +1,4 @@
-package com.example.onlinestoreapp.presentation.authorization.registration
+package com.example.onlinestoreapp.presentation.registration
 
 import android.os.Bundle
 import android.widget.Toast
@@ -6,7 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.onlinestoreapp.R
 import com.example.onlinestoreapp.databinding.FragmentRegistrationBinding
 import com.example.onlinestoreapp.domain.model.User
-import com.example.onlinestoreapp.domain.presentation.AdvancedViewState
+import com.example.onlinestoreapp.domain.presentation.ViewState
 import com.example.onlinestoreapp.utils.base_classes.BaseBindingFragment
 import com.example.onlinestoreapp.utils.checkIsEmailValid
 import com.example.onlinestoreapp.utils.checkPasswordLength
@@ -36,20 +36,21 @@ class RegistrationFragment :
         }
     }
 
-    private fun handleViewStateChanges(viewState: AdvancedViewState<RegistrationViewState>) {
+    private fun handleViewStateChanges(viewState: ViewState<RegistrationViewState>) {
         when (viewState) {
-            is AdvancedViewState.Data -> {
+            is ViewState.Data -> {
                 hideDialog()
                 handleRegistrationViewState(viewState.data)
             }
-            is AdvancedViewState.Error -> {
+            is ViewState.Error -> {
                 hideDialog()
-                Toast.makeText(context, viewState.error, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, resources.getString(viewState.error), Toast.LENGTH_SHORT)
+                    .show()
             }
-            AdvancedViewState.Loading -> {
+            ViewState.Loading -> {
                 showDialog()
             }
-            AdvancedViewState.NetworkError -> {
+            ViewState.NetworkError -> {
                 hideDialog()
             }
         }

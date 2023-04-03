@@ -1,11 +1,11 @@
-package com.example.onlinestoreapp.presentation.authorization.registration
+package com.example.onlinestoreapp.presentation.registration
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.onlinestoreapp.domain.model.User
-import com.example.onlinestoreapp.domain.presentation.AdvancedViewState
+import com.example.onlinestoreapp.domain.presentation.ViewState
 import com.example.onlinestoreapp.domain.repository.AuthorizationRepository
 import com.example.onlinestoreapp.domain.use_case.ValidateEmailUseCase
 import com.example.onlinestoreapp.domain.use_case.ValidateNameUseCase
@@ -20,8 +20,8 @@ class RegistrationViewModel(
     private val validateNameUseCase: ValidateNameUseCase
 ) : ViewModel() {
 
-    private val _viewState = MutableLiveData<AdvancedViewState<RegistrationViewState>>()
-    var viewState: LiveData<AdvancedViewState<RegistrationViewState>> = _viewState
+    private val _viewState = MutableLiveData<ViewState<RegistrationViewState>>()
+    var viewState: LiveData<ViewState<RegistrationViewState>> = _viewState
 
     fun onRegistrationEvent(event: RegistrationEvent) {
         when (event) {
@@ -41,7 +41,7 @@ class RegistrationViewModel(
         val errorResult = results.firstOrNull { it.errorMessage != null }
 
         if (errorResult?.errorMessage != null) {
-            _viewState.value = AdvancedViewState.Error(errorResult.errorMessage)
+            _viewState.value = ViewState.Error(errorResult.errorMessage)
             return
         }
         createUser(user)
@@ -49,16 +49,16 @@ class RegistrationViewModel(
 
     private fun createUser(user: User) {
         viewModelScope.launch {
-            _viewState.value = AdvancedViewState.Loading
+            _viewState.value = ViewState.Loading
             delay(3000)
             if (checkUser(user.email)) {
-                _viewState.value = AdvancedViewState.Data(
+                _viewState.value = ViewState.Data(
                     RegistrationViewState.ShowUserWasNotCreated
                 )
                 return@launch
             }
             repository.createUser(user)
-            _viewState.value = AdvancedViewState.Data(
+            _viewState.value = ViewState.Data(
                 RegistrationViewState.ShowUserSuccessfullyCreated
             )
         }

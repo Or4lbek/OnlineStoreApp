@@ -1,12 +1,11 @@
 package com.example.onlinestoreapp.data.model
 
+import com.google.gson.annotations.SerializedName
+
 data class LatestApiModel(
     val category: String,
-    val image_url: String,
+    @SerializedName("image_url")
+    val imageUrl: String,
     val name: String,
     val price: Int
-) {
-    override fun toString(): String {
-        return "Latest(category='$category', image_url='$image_url', name='$name', price=$price)"
-    }
-}
+)

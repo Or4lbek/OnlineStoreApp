@@ -3,15 +3,15 @@ package com.example.onlinestoreapp.presentation.splash
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.onlinestoreapp.domain.presentation.AdvancedViewState
+import com.example.onlinestoreapp.domain.presentation.ViewState
 import com.example.onlinestoreapp.domain.use_case.IsUserAuthUseCase
 
 class SplashViewModel(
     private val isUserAuthUseCase: IsUserAuthUseCase
 ) : ViewModel() {
 
-    private val _viewState = MutableLiveData<AdvancedViewState<SplashViewState>>()
-    var viewState: LiveData<AdvancedViewState<SplashViewState>> = _viewState
+    private val _viewState = MutableLiveData<ViewState<SplashViewState>>()
+    var viewState: LiveData<ViewState<SplashViewState>> = _viewState
 
     fun onSplashEvent(event: SplashEvent) {
         when (event) {
@@ -23,9 +23,9 @@ class SplashViewModel(
 
     private fun isUserAuth() {
         if (isUserAuthUseCase()) {
-            _viewState.value = AdvancedViewState.Data(SplashViewState.UserWasAuthorized)
+            _viewState.value = ViewState.Data(SplashViewState.UserWasAuthorized)
         } else {
-            _viewState.value = AdvancedViewState.Data(SplashViewState.UserWasNotAuthorized)
+            _viewState.value = ViewState.Data(SplashViewState.UserWasNotAuthorized)
         }
     }
 }

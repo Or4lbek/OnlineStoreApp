@@ -19,7 +19,7 @@ class FlashSaleProductsApiModelMapper :
     private fun getFlashSaleProducts(from: FlashSaleApiModel) = FlashSale(
         category = from.category,
         discount = from.discount,
-        image_url = from.image_url,
+        imageUrl = from.imageUrl,
         name = from.name,
         price = from.price
     )

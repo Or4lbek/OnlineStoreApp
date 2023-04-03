@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.onlinestoreapp.R
 import com.example.onlinestoreapp.databinding.FragmentProfileBinding
 import com.example.onlinestoreapp.domain.model.User
-import com.example.onlinestoreapp.domain.presentation.AdvancedViewState
+import com.example.onlinestoreapp.domain.presentation.ViewState
 import com.example.onlinestoreapp.presentation.activity.MainActivity
 import com.example.onlinestoreapp.utils.base_classes.BaseBindingFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -21,7 +21,7 @@ class ProfileFragment :
     private val viewModel: ProfileViewModel by viewModel()
 
     override fun initViews(savedInstanceState: Bundle?) {
-        viewModel.onProfileEvent(ProfileEvent.onScreenOpen)
+        viewModel.onProfileEvent(ProfileEvent.OnScreenOpen)
 
         binding.uploadItemTv.setOnClickListener {
             onClickButtonUploadItem()
@@ -39,19 +39,19 @@ class ProfileFragment :
         }
     }
 
-    private fun handleViewStateChanges(viewState: AdvancedViewState<ProfileViewState>) {
+    private fun handleViewStateChanges(viewState: ViewState<ProfileViewState>) {
         when (viewState) {
-            is AdvancedViewState.Data -> {
+            is ViewState.Data -> {
                 handleProfileViewState(viewState.data)
             }
-            is AdvancedViewState.Error -> {
+            is ViewState.Error -> {
                 hideDialog()
-                Toast.makeText(context, viewState.error, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, resources.getString(viewState.error), Toast.LENGTH_SHORT).show()
             }
-            AdvancedViewState.Loading -> {
+            ViewState.Loading -> {
                 showDialog()
             }
-            AdvancedViewState.NetworkError -> {
+            ViewState.NetworkError -> {
                 hideDialog()
             }
         }
@@ -78,9 +78,9 @@ class ProfileFragment :
 
     private fun updateViews(user: User?) {
         binding.userNameTv.text = user?.name
-        Glide.with(requireContext()).load(user?.image).into(binding.userImageIv)
+        Glide.with(requireContext()).load(user?.image).placeholder(R.drawable.placeholder_avatar)
+            .into(binding.userImageIv)
     }
-
 
 
     private fun onClickButtonLogOut() {

@@ -1,13 +1,9 @@
-package com.example.onlinestoreapp.data.api
+package com.example.onlinestoreapp.data.remote
 
 import com.example.onlinestoreapp.data.model.DetailProductApiModel
 import com.example.onlinestoreapp.data.model.FlashSaleProductsApiModel
 import com.example.onlinestoreapp.data.model.HintWordsApiModel
 import com.example.onlinestoreapp.data.model.LatestProductsApiModel
-import com.example.onlinestoreapp.domain.model.DetailProduct
-import com.example.onlinestoreapp.domain.model.FlashSaleProducts
-import com.example.onlinestoreapp.domain.model.LatestProducts
-import com.example.onlinestoreapp.domain.model.HintWords
 import retrofit2.http.GET
 
 interface StoreService {

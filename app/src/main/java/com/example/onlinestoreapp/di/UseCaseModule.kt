@@ -6,8 +6,8 @@ import org.koin.dsl.module
 
 val useCaseModule = module {
     singleOf(::ValidateEmailUseCase)
-    single { ValidatePasswordUseCase() }
-    single { ValidateNameUseCase() }
+    singleOf(::ValidatePasswordUseCase)
+    singleOf(::ValidateNameUseCase)
     singleOf(::IsUserAuthUseCase)
     singleOf(::GetAuthTokenUseCase)
     singleOf(::CreateAuthTokenUseCase)
