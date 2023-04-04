@@ -5,14 +5,17 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.example.onlinestoreapp.R
+import com.example.onlinestoreapp.core.checkIsEmailValid
+import com.example.onlinestoreapp.core.checkPasswordLength
 import com.example.onlinestoreapp.databinding.FragmentLoginBinding
 import com.example.onlinestoreapp.domain.presentation.ViewState
-import com.example.onlinestoreapp.utils.base_classes.BaseBindingFragment
-import com.example.onlinestoreapp.utils.checkIsEmailValid
-import com.example.onlinestoreapp.utils.checkPasswordLength
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.example.onlinestoreapp.core.R as coreR
 
-class LoginFragment : BaseBindingFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
+class LoginFragment :
+    com.example.onlinestoreapp.core.base_classes.BaseBindingFragment<FragmentLoginBinding>(
+        FragmentLoginBinding::inflate
+    ) {
 
     private val viewModel: LoginViewModel by viewModel()
 
@@ -44,7 +47,11 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>(FragmentLoginBin
             }
             is ViewState.Error -> {
                 hideDialog()
-                Toast.makeText(context, resources.getString(viewState.error), Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    context,
+                    viewState.error.asString(requireContext()),
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
             ViewState.Loading -> {
@@ -66,7 +73,7 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>(FragmentLoginBin
             LoginViewState.ShowUserDoNotExist -> {
                 Toast.makeText(
                     requireContext(),
-                    getString(R.string.user_does_not_exist),
+                    getString(coreR.string.user_does_not_exist),
                     Toast.LENGTH_SHORT
                 ).show()
             }

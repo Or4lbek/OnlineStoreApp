@@ -1,7 +1,7 @@
 package com.example.onlinestoreapp.di
 
 import com.example.onlinestoreapp.data.remote.StoreService
-import com.example.onlinestoreapp.utils.Constants.BASE_URL
+import com.example.onlinestoreapp.core.Constants.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.module.dsl.singleOf

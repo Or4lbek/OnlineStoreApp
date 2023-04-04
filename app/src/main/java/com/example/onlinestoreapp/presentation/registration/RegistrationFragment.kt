@@ -4,17 +4,19 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.onlinestoreapp.R
+import com.example.onlinestoreapp.core.R as coreR
+import com.example.onlinestoreapp.core.checkIsEmailValid
+import com.example.onlinestoreapp.core.checkPasswordLength
 import com.example.onlinestoreapp.databinding.FragmentRegistrationBinding
 import com.example.onlinestoreapp.domain.model.User
 import com.example.onlinestoreapp.domain.presentation.ViewState
-import com.example.onlinestoreapp.utils.base_classes.BaseBindingFragment
-import com.example.onlinestoreapp.utils.checkIsEmailValid
-import com.example.onlinestoreapp.utils.checkPasswordLength
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class RegistrationFragment :
-    BaseBindingFragment<FragmentRegistrationBinding>(FragmentRegistrationBinding::inflate) {
+    com.example.onlinestoreapp.core.base_classes.BaseBindingFragment<FragmentRegistrationBinding>(
+        FragmentRegistrationBinding::inflate
+    ) {
 
     private val viewModel: RegistrationViewModel by viewModel()
 
@@ -44,7 +46,11 @@ class RegistrationFragment :
             }
             is ViewState.Error -> {
                 hideDialog()
-                Toast.makeText(context, resources.getString(viewState.error), Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    context,
+                    viewState.error.asString(requireContext()),
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
             ViewState.Loading -> {
@@ -61,7 +67,7 @@ class RegistrationFragment :
             is RegistrationViewState.ShowUserSuccessfullyCreated -> {
                 Toast.makeText(
                     requireContext(),
-                    getString(R.string.successfully_created_account),
+                    getString(coreR.string.successfully_created_account),
                     Toast.LENGTH_SHORT
                 ).show()
                 findNavController().navigate(
@@ -71,7 +77,7 @@ class RegistrationFragment :
             RegistrationViewState.ShowUserWasNotCreated -> {
                 Toast.makeText(
                     requireContext(),
-                    getString(R.string.email_already_used),
+                    getString(coreR.string.email_already_used),
                     Toast.LENGTH_SHORT
                 ).show()
             }

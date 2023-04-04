@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.onlinestoreapp.core.UiText
 import com.example.onlinestoreapp.domain.presentation.ViewState
 import com.example.onlinestoreapp.domain.repository.AuthorizationRepository
 import com.example.onlinestoreapp.domain.use_case.CreateAuthTokenUseCase
@@ -39,7 +40,8 @@ class LoginViewModel(
         val errorResult = results.firstOrNull { it.errorMessage != null }
 
         if (errorResult?.errorMessage != null) {
-            _viewState.value = ViewState.Error(errorResult.errorMessage)
+            val uiText = errorResult.errorMessage
+            _viewState.value = ViewState.Error(uiText as UiText)
             return
         }
         loginUser(email, password)

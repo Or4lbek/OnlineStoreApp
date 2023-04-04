@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.onlinestoreapp.core.UiText
 import com.example.onlinestoreapp.domain.model.LatestProducts
 import com.example.onlinestoreapp.domain.network.Response
 import com.example.onlinestoreapp.domain.presentation.ViewState
@@ -93,7 +94,7 @@ class FeedViewModel(
         }
     }
 
-    private fun onError(errorString: Int) =
+    private fun onError(errorString: UiText) =
         _viewState.postValue(ViewState.Error(errorString))
 
     private fun onNetworkError() =

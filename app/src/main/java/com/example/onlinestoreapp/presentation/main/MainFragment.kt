@@ -6,10 +6,12 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.onlinestoreapp.R
 import com.example.onlinestoreapp.databinding.FragmentMainBinding
-import com.example.onlinestoreapp.utils.base_classes.BaseBindingFragment
 
 
-class MainFragment : BaseBindingFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
+class MainFragment :
+    com.example.onlinestoreapp.core.base_classes.BaseBindingFragment<FragmentMainBinding>(
+        FragmentMainBinding::inflate
+    ) {
 
     override fun initViews(savedInstanceState: Bundle?) {
         requireActivity().window.statusBarColor =

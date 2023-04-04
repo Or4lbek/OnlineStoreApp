@@ -41,7 +41,7 @@ class RegistrationViewModel(
         val errorResult = results.firstOrNull { it.errorMessage != null }
 
         if (errorResult?.errorMessage != null) {
-            _viewState.value = ViewState.Error(errorResult.errorMessage)
+            _viewState.value = ViewState.Error(errorResult.errorMessage!!)
             return
         }
         createUser(user)

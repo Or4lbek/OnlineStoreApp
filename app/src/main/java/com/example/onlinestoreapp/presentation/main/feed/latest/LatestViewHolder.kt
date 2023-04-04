@@ -3,7 +3,7 @@ package com.example.onlinestoreapp.presentation.main.feed.latest
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.onlinestoreapp.R
+import com.example.onlinestoreapp.core.R
 import com.example.onlinestoreapp.databinding.ItemLatestBinding
 import com.example.onlinestoreapp.domain.model.Latest
 

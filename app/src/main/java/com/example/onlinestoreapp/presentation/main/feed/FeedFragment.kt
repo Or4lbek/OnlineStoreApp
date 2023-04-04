@@ -7,6 +7,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.onlinestoreapp.R
+import com.example.onlinestoreapp.core.R as coreR
 import com.example.onlinestoreapp.databinding.FragmentFeedBinding
 import com.example.onlinestoreapp.domain.model.HintWords
 import com.example.onlinestoreapp.domain.model.User
@@ -14,10 +15,12 @@ import com.example.onlinestoreapp.domain.presentation.ViewState
 import com.example.onlinestoreapp.presentation.main.feed.category.CategoryListAdapter
 import com.example.onlinestoreapp.presentation.main.feed.flash_sale.FlashSaleProductListAdapter
 import com.example.onlinestoreapp.presentation.main.feed.latest.LatestProductListAdapter
-import com.example.onlinestoreapp.utils.base_classes.BaseBindingFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class FeedFragment : BaseBindingFragment<FragmentFeedBinding>(FragmentFeedBinding::inflate) {
+class FeedFragment :
+    com.example.onlinestoreapp.core.base_classes.BaseBindingFragment<FragmentFeedBinding>(
+        FragmentFeedBinding::inflate
+    ) {
 
     private val viewModel: FeedViewModel by viewModel()
     override fun initViews(savedInstanceState: Bundle?) {
@@ -57,7 +60,11 @@ class FeedFragment : BaseBindingFragment<FragmentFeedBinding>(FragmentFeedBindin
             }
             is ViewState.Error -> {
                 hideDialog()
-                Toast.makeText(context, resources.getString(viewState.error), Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    context,
+                    viewState.error.asString(requireContext()),
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
             ViewState.Loading -> {
@@ -93,7 +100,7 @@ class FeedFragment : BaseBindingFragment<FragmentFeedBinding>(FragmentFeedBindin
     }
 
     private fun updateUserImage(user: User?) {
-        Glide.with(requireContext()).load(user?.image).placeholder(R.drawable.placeholder_avatar)
+        Glide.with(requireContext()).load(user?.image).placeholder(coreR.drawable.placeholder_avatar)
             .into(binding.userImageIv)
     }
 }

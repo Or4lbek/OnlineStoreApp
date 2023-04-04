@@ -7,10 +7,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.onlinestoreapp.R
 import com.example.onlinestoreapp.databinding.FragmentSplashBinding
 import com.example.onlinestoreapp.domain.presentation.ViewState
-import com.example.onlinestoreapp.utils.base_classes.BaseBindingFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SplashFragment : BaseBindingFragment<FragmentSplashBinding>(FragmentSplashBinding::inflate) {
+class SplashFragment :
+    com.example.onlinestoreapp.core.base_classes.BaseBindingFragment<FragmentSplashBinding>(
+        FragmentSplashBinding::inflate
+    ) {
 
     private val viewModel: SplashViewModel by viewModel()
 
@@ -39,7 +41,11 @@ class SplashFragment : BaseBindingFragment<FragmentSplashBinding>(FragmentSplash
             }
             is ViewState.Error -> {
                 hideDialog()
-                Toast.makeText(context, resources.getString(viewState.error), Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    context,
+                    viewState.error.asString(requireContext()),
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
             ViewState.Loading -> {

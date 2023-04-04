@@ -6,17 +6,18 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
-import com.example.onlinestoreapp.R
+import com.example.onlinestoreapp.core.R
 import com.example.onlinestoreapp.databinding.FragmentProfileBinding
 import com.example.onlinestoreapp.domain.model.User
 import com.example.onlinestoreapp.domain.presentation.ViewState
 import com.example.onlinestoreapp.presentation.activity.MainActivity
-import com.example.onlinestoreapp.utils.base_classes.BaseBindingFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class ProfileFragment :
-    BaseBindingFragment<FragmentProfileBinding>(FragmentProfileBinding::inflate) {
+    com.example.onlinestoreapp.core.base_classes.BaseBindingFragment<FragmentProfileBinding>(
+        FragmentProfileBinding::inflate
+    ) {
 
     private val viewModel: ProfileViewModel by viewModel()
 
@@ -46,7 +47,12 @@ class ProfileFragment :
             }
             is ViewState.Error -> {
                 hideDialog()
-                Toast.makeText(context, resources.getString(viewState.error), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    viewState.error.asString(requireContext()),
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
             }
             ViewState.Loading -> {
                 showDialog()

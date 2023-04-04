@@ -8,17 +8,19 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com.example.onlinestoreapp.R
 import com.example.onlinestoreapp.databinding.FragmentDetailBinding
 import com.example.onlinestoreapp.domain.model.DetailProduct
 import com.example.onlinestoreapp.domain.presentation.ViewState
 import com.example.onlinestoreapp.presentation.main.detail.colors.ColorListAdapter
 import com.example.onlinestoreapp.presentation.main.detail.image_slider.ImageSliderAdapter
-import com.example.onlinestoreapp.utils.base_classes.BaseBindingFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
+import com.example.onlinestoreapp.core.R as coreR
 
-class DetailFragment : BaseBindingFragment<FragmentDetailBinding>(FragmentDetailBinding::inflate) {
+class DetailFragment :
+    com.example.onlinestoreapp.core.base_classes.BaseBindingFragment<FragmentDetailBinding>(
+        FragmentDetailBinding::inflate
+    ) {
 
     private val viewModel: DetailViewModel by viewModel()
     override fun initViews(savedInstanceState: Bundle?) {
@@ -65,7 +67,12 @@ class DetailFragment : BaseBindingFragment<FragmentDetailBinding>(FragmentDetail
             }
             is ViewState.Error -> {
                 hideDialog()
-                Toast.makeText(context, resources.getString(viewState.error), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    viewState.error.asString(requireContext()),
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
             }
             ViewState.Loading -> {
                 showDialog()
@@ -90,12 +97,12 @@ class DetailFragment : BaseBindingFragment<FragmentDetailBinding>(FragmentDetail
         detailNameTv.text = detailProduct.name
         detailDescriptionTv.text = detailProduct.description
         val reviewsString = requireContext().resources.getString(
-            R.string.product_reviews
+            coreR.string.product_reviews
         )
         detailReviewsTv.text = String.format(reviewsString, detailProduct.numberOfReviews)
         detailRatingTv.text = detailProduct.rating.toString()
         val priceString = requireContext().resources.getString(
-            R.string.product_price
+            coreR.string.product_price
         )
         detailPriceTv.text = String.format(priceString, detailProduct.price)
 
